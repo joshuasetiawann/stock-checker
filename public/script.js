@@ -2,7 +2,7 @@ function getSingleStock() {
   const stock = document.getElementById('stockInput').value.trim();
   if (!stock) return alert('Please enter a stock symbol');
 
-  fetch('https://stock-checker.onrender.com/api/stock-prices?stock=' + stock)
+  fetch('https://stock-price-checker-proxy.freecodecamp.rocks/v1/stock/aapl/quote' + stock)
     .then(res => res.json())
     .then(data => {
       const result = document.getElementById('singleResult');
