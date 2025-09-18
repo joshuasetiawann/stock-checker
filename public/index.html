@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stock Price Checker</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Nasdaq Stock Price Checker</h1>
+
+    <section>
+      <h2>Get Single Stock Data</h2>
+      <input type="text" id="stockInput" placeholder="Enter stock symbol (e.g., GOOG)" />
+      <button onclick="getSingleStock()">Check Price & Likes</button>
+      <p id="singleResult"></p>
+    </section>
+
+    <section>
+      <h2>Compare Two Stocks</h2>
+      <input type="text" id="stock1" placeholder="First stock (e.g., GOOG)" />
+      <input type="text" id="stock2" placeholder="Second stock (e.g., MSFT)" />
+      <button onclick="compareStocks()">Compare</button>
+      <p id="compareResult"></p>
+    </section>
+
+    <button onclick="likeStock()">Like Last Checked Stock</button>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
