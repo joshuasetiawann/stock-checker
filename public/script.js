@@ -2,14 +2,14 @@ function getSingleStock() {
   const stock = document.getElementById('stockInput').value.trim();
   if (!stock) return alert('Please enter a stock symbol');
 
-  fetch(/api/stock-prices?stock=${stock})
+  fetch('https://stock-checker.onrender.com/api/stock-prices?stock=' + stock)
     .then(res => res.json())
     .then(data => {
       const result = document.getElementById('singleResult');
-      result.innerHTML = 
+      result.innerHTML = `
         ${data.stockData.stock}: $${data.stockData.price.toFixed(2)} 
         (Likes: ${data.stockData.likes})
-      ;
+      `;
     })
     .catch(err => console.error(err));
 }
@@ -19,15 +19,15 @@ function compareStocks() {
   const stock2 = document.getElementById('stock2').value.trim();
   if (!stock1 || !stock2) return alert('Please enter both stock symbols');
 
-  fetch(/api/stock-prices?stock=${stock1}&stock=${stock2})
+  fetch(`/api/stock-prices?stock=${stock1}&stock=${stock2}`)
     .then(res => res.json())
     .then(data => {
       const result = document.getElementById('compareResult');
       const [s1, s2] = data.stockData;
-      result.innerHTML = 
+      result.innerHTML = `
         ${s1.stock}: $${s1.price.toFixed(2)} (Rel Likes: ${s1.rel_likes})<br>
         ${s2.stock}: $${s2.price.toFixed(2)} (Rel Likes: ${s2.rel_likes})
-      ;
+      `;
     })
     .catch(err => console.error(err));
 }
@@ -39,9 +39,9 @@ function likeStock() {
 
   let url = '/api/stock-prices?';
   if (input) {
-    url += stock=${input}&like=true;
+    url += `stock=${input}&like=true`;
   } else if (stock1 && stock2) {
-    url += stock=${stock1}&stock=${stock2}&like=true;
+    url += `stock=${stock1}&stock=${stock2}&like=true`;
   } else {
     return alert('Please check a stock first');
   }
